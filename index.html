@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facturación DGII Offline</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="tabs">
+            <button class="tab" onclick="showTab('clientes')">Clientes</button>
+            <button class="tab" onclick="showTab('productos')">Productos</button>
+            <button class="tab" onclick="showTab('factura')">Factura</button>
+        </div>
+
+        <div id="clientes" class="tab-content">
+            <h2>Registrar Cliente</h2>
+            <input type="text" id="nit" placeholder="NIT">
+            <input type="text" id="nombreCliente" placeholder="Nombre">
+            <input type="text" id="direccion" placeholder="Dirección">
+            <button onclick="guardarCliente()">Guardar</button>
+        </div>
+
+        <div id="productos" class="tab-content" style="display:none;">
+            <h2>Registrar Producto</h2>
+            <input type="text" id="codigo" placeholder="Código">
+            <input type="text" id="nombreProducto" placeholder="Nombre">
+            <input type="number" id="precio" placeholder="Precio ($)">
+            <button onclick="guardarProducto()">Guardar</button>
+        </div>
+
+        <div id="factura" class="tab-content" style="display:none;">
+            <h2>Nueva Factura</h2>
+            <select id="clienteFactura"></select>
+            <div id="listaProductos"></div>
+            <input type="text" id="codigoProducto" placeholder="Código Producto">
+            <input type="number" id="cantidad" placeholder="Cantidad">
+            <button onclick="agregarProducto()">Agregar</button>
+            <button onclick="generarFactura()">Generar Factura</button>
+            <div id="totales">
+                <p>Subtotal: $<span id="subtotal">0.00</span></p>
+                <p>IVA (13%): $<span id="iva">0.00</span></p>
+                <p>Total: $<span id="total">0.00</span></p>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
